@@ -11,8 +11,8 @@ public class MainAmusementParkRides {
 
 		Scanner sc = new Scanner(System.in);// checked dynamically using console.
 		System.out.println("Enter height.");
-		checkHeight.height = sc.nextInt();// Values checked using boundary value analysis are height
-											// -89,90,91,199,200,201 cms.
+		checkHeight.height = sc.nextInt();// Height checked using boundary value analysis are
+											// 89,90,91,199,200,201 cms.
 		checkHeight.allowRide();
 
 		sc.close();
