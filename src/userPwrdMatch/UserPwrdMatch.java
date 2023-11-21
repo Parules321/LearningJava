@@ -30,14 +30,15 @@ public class UserPwrdMatch {
 			if (actualUserId.equals(expectedUserId) && actualPswrd.equals(expectedPassword)) {
 				System.out.println("You are logged into the application");
 				break;
-			} else if (i != 2) {
-				System.out.println("Incorrect User id or password. Try again.");
+			} else {
+				if (i != 2) {
+					System.out.println("Incorrect User id or password. Try again.");
+				} else {
+					System.out.println("Account locked.");
+				}
+
 			}
 
-			else if (i == 2) {
-				System.out.println("Account locked.");
-			}
 		}
 	}
-
 }
