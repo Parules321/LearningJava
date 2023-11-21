@@ -7,7 +7,11 @@ public class MainClassAmusementPark {
 
 		AmusementPark amusementPark = new AmusementPark();
 
-		amusementPark.rideCriteraAndCapacity();
+		amusementPark.maxHeightInCms = 200;
+		amusementPark.minHeightInCms = 90;
+		amusementPark.rideCapacity=10;
+		amusementPark.runTheRide();
+				
 
 	}
 

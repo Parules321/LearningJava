@@ -8,20 +8,22 @@ public class WaterTank {
 	 * to stop the tank from over flowing.
 	 */
 
-	int tankFilledInLtrs = 0;
+	int tankFilledInLtrs;
+	int tankCapacityInLtrs;
+	int bucketCapacityInLtrs;
+	int breakPointInLtrs;
 
-	void fillWaterTank() {
-		for (int useBucket = 1; useBucket < 11; useBucket++) {
+	void calculateWaterLevel() {
 
-			tankFilledInLtrs += 10;
-			System.out.println(
-					"Tank is filled " + tankFilledInLtrs + " ltrs using 10 ltrs bucket " + useBucket + " times.");
-			if (tankFilledInLtrs == 100) {
-				System.out.println("Tank has reached full capacity of 100 ltrs. Please stop to avoid overflow.");
+		for (tankFilledInLtrs = 0; tankFilledInLtrs <= breakPointInLtrs; tankFilledInLtrs += bucketCapacityInLtrs) {
+
+			System.out.println("The water in tank now is " + tankFilledInLtrs + "ltrs.");
+
+			if (tankFilledInLtrs == breakPointInLtrs) {
+				System.out.println("Stop filling now to avoid overflow");
 				break;
 			}
 		}
-
 	}
 
 }

@@ -7,7 +7,11 @@ public class MainClassWaterTank {
 
 		WaterTank waterTank = new WaterTank();
 
-		waterTank.fillWaterTank();
+		waterTank.tankCapacityInLtrs = 100;
+		waterTank.bucketCapacityInLtrs = 10;
+		waterTank.breakPointInLtrs = 90;
+
+		waterTank.calculateWaterLevel();
 
 	}
 
