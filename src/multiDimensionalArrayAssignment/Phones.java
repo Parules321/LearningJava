@@ -16,7 +16,8 @@ public class Phones {
 		boolean phoneFound = false;
 		String productName;
 
-		if (phoneBrand.equalsIgnoreCase("Samsung")) {
+		switch (phoneBrand) {
+		case "Samsung":
 			System.out.println("Available products in this brand are:- " + phones[0][0] + ", " + phones[0][1] + ", "
 					+ phones[0][2] + " and " + phones[0][3]);
 			System.out.println("Please select a product name from the list and enter.");
@@ -25,15 +26,15 @@ public class Phones {
 				if (productName.equalsIgnoreCase(phones[0][i])) {
 					phoneFound = true;
 					System.out.println("Product selected is: " + phones[0][i]);
-					break;
 				}
 			}
 			if (phoneFound == false) {
 				System.out.println("Please select a product from the list");
 			}
-		}
+			;
+			break;
 
-		else if (phoneBrand.equalsIgnoreCase("Google")) {
+		case "Google":
 			System.out.println("Available products in this brand are:- " + phones[1][0] + ", " + phones[1][1] + ", "
 					+ phones[1][2] + " and " + phones[1][3]);
 			System.out.println("Please select a product name from the list and enter.");
@@ -42,15 +43,15 @@ public class Phones {
 				if (productName.equalsIgnoreCase(phones[1][i])) {
 					phoneFound = true;
 					System.out.println("Product selected is: " + phones[1][i]);
-					break;
 				}
 			}
 			if (phoneFound == false) {
 				System.out.println("Please select a product from the list");
 			}
-		}
+			;
+			break;
 
-		else if (phoneBrand.equalsIgnoreCase("Apple")) {
+		case "Apple":
 			System.out.println("Available products in this brand are:- " + phones[2][0] + ", " + phones[2][1] + ", "
 					+ phones[2][2] + " and " + phones[2][3]);
 			System.out.println("Please select a product name from the list and enter.");
@@ -59,18 +60,21 @@ public class Phones {
 				if (productName.equalsIgnoreCase(phones[2][i])) {
 					phoneFound = true;
 					System.out.println("Product selected is: " + phones[2][i]);
-					break;
 				}
 			}
 			if (phoneFound == false) {
 				System.out.println("Please select a product from the list");
 			}
-		}
+			;
+			break;
 
-		else {
+		default: {
 			System.out.println("Phone brand not found in the system.");
+		}
+			;
+			break;
+
 		}
 
 	}
-
 }
