@@ -1,25 +1,28 @@
 package javaOOPsAssignmentPart1;
 
 public class BankOperations {
+	
+	public double balance;
+	
 
-	public double withdrawMoney(double amountToBeWithdrawn, double balance) {
-		if (amountToBeWithdrawn > balance) {
-			System.out.println(
-					"Sorry. Amount to be withdrawn can not be more than your account balance. Operation Terminated.");
+	public void setBalance(double fundsAvailable, double amountWithdrawn, double amountDeposited) {
+		if (amountWithdrawn > fundsAvailable) {
+			balance = fundsAvailable + amountDeposited; 
+		} else {
+			balance = (fundsAvailable - amountWithdrawn) + amountDeposited;
 		}
-
-		else {
-			balance -= amountToBeWithdrawn;
-			System.out.println("Withdrawal successful. Your new balance is: " + balance);
-		}
-		return balance;
-
+		
 	}
 
-	public double depositMoney(double amountToBeDeposited, double balance) {
-		balance += amountToBeDeposited;
-		System.out.println("Deposit Successful. Your new balance is: " + balance);
-		return balance;
+	public double withdrawMoney(double amountToBeWithdrawn, double fundsAvailable) {
+		if (amountToBeWithdrawn > fundsAvailable) {
+			System.out.println("Sorry. Amount to be withdrawn can not be more than your account balance.");
+		} else {System.out.println("Withdrawal successful.");}
+		return amountToBeWithdrawn;
+	}
+
+	public double depositMoney(double amountToBeDeposited) {System.out.println("Deposit successful");
+		return amountToBeDeposited;
 
 	}
 

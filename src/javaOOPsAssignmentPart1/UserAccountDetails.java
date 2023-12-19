@@ -51,7 +51,7 @@ public class UserAccountDetails {
 	}
 
 	public boolean validateUser(String passwordByUser) {
-		
+
 		if (passwordByUser.equals(getPassword())) {
 			System.out.println("User validated successfully. Please proceed.");
 			return true;
@@ -61,5 +61,15 @@ public class UserAccountDetails {
 		}
 
 	}
+	
+	
+	public void setFundsAvailable (double amountWithdrawn, double amountDeposited) {
+		
+		if(amountWithdrawn>getFundsAvailable()) { this.fundsAvailable = getFundsAvailable()+ amountDeposited;}
+		else {this.fundsAvailable = (getFundsAvailable() - amountWithdrawn) + amountDeposited;}	
+			
+		}
+		
+	
 
 }
