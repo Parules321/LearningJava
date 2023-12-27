@@ -19,17 +19,9 @@ public class CruiseMain {
 		userDetails.setName(nameByUser);
 		System.out.println("Enter your phone number.");
 		String phoneNumberByUser = sc.next();
-		while (phoneNumberByUser.length() != 10) {
-			System.out.println("Please enter a valid 10 digit phone number without any spaces in between.");
-			phoneNumberByUser = sc.next();
-		}
 		userDetails.setPhoneNumber(phoneNumberByUser);
 		System.out.println("Enter your email address.");
 		String emailIdByUser = sc.next();
-		while (!(emailIdByUser.contains("@")) || !(emailIdByUser.contains(".")) || emailIdByUser.endsWith(".")) {
-			System.out.println("Please enter valid email address.");
-			emailIdByUser = sc.next();
-		}
 		userDetails.setEmailId(emailIdByUser);
 		System.out.println("Enter the username that you want to use.");
 		sc.nextLine();
@@ -38,14 +30,6 @@ public class CruiseMain {
 		System.out.println(
 				"Please create your password now.Password must have 8 or more characters and must have one or more of these special characters - !,@,#,$,%,^,& or *.");
 		String passWordByUser = sc.next();
-		while (passWordByUser.length() < 8 || !(passWordByUser.contains("!")) && !(passWordByUser.contains("@"))
-				&& !(passWordByUser.contains("#")) && !(passWordByUser.contains("$")) && !(passWordByUser.contains("%"))
-				&& !(passWordByUser.contains("^")) && !(passWordByUser.contains("&"))
-				&& !(passWordByUser.contains("*"))) {
-			System.out.println(
-					"Password not created. Please create a password which is 8 or more characters with atleast one special character from !,@,#,$,%,^,& or *.");
-			passWordByUser = sc.next();
-		}
 
 		userDetails.setPassWord(passWordByUser);
 
@@ -55,23 +39,6 @@ public class CruiseMain {
 		String userNameToSignIn = sc.nextLine();
 		System.out.println("\nPlease enter password.");
 		String passWordToSignIn = sc.next();
-		while (!(userNameToSignIn.equals(userDetails.getUserName()))
-				|| !(passWordToSignIn.equals(userDetails.getPassWord()))) {
-			System.out.println("Incorrect details entered. "
-					+ "\nIf you do not remember your user details, please enter your email address below on which we will email you your user details. "
-					+ "\nOnce you log in with your details that we email to you, we recommend changing your username and password."
-					+ "\nIf you remember your user details, please enter any alphabet and press enter");
-			String emailIdToRecoverUserDetails = sc.next();
-			if (emailIdToRecoverUserDetails.equals(userDetails.getEmailId())) {
-				System.out.println("User details emailed. Please check your email and try again.");
-			}
-
-			System.out.println("Please enter username.");
-			sc.nextLine();
-			userNameToSignIn = sc.nextLine();
-			System.out.println("Please enter password.");
-			passWordToSignIn = sc.next();
-		}
 		userDetails.logIn(userNameToSignIn, passWordToSignIn);
 
 		String selectionConfirmation = "";
@@ -113,31 +80,24 @@ public class CruiseMain {
 		System.out.println("Enter the number of children");
 
 		int noOfChildren = sc.nextInt();
-		int noOfChildrenAboveFive = 0;
-		int age;
-		if (noOfChildren > 0) {
-			for (int i = 1; i <= noOfChildren; i++) {
-				System.out.println("Enter the age of Child " + i);
-				age = sc.nextInt();
-				if (age > 5 && age <= 12) {
-					noOfChildrenAboveFive += 1;
-				}
 
-			}
+		cruise.setNumberOfChildrenAboveFive(noOfChildren);
+		String anotherBookingForAdultsExist = "";
+		if (noOfAdults == 0 && noOfChildren == 0) {
+			System.out.println("Sorry, no bookings can be made when the passenger is 0.");
 
 		}
 
-		cruise.setNumberOfChildrenAboveFive(noOfChildrenAboveFive);
-
-		if (noOfAdults == 0 && noOfChildrenAboveFive == 0) {
+		else if (noOfAdults == 0) {
 			System.out.println(
-					"Sorry, if there are no adults and no children over five years old, cruise booking is not allowed. Operation terminated.");
+					"Sorry, if there are no adults, cruise booking can not be made. If you've already booked separate tickets for adults, please enter Yes to confirm and proceed.");
+			anotherBookingForAdultsExist = sc.next();
 
 		}
 
-		else {
+		if (noOfAdults > 0 || anotherBookingForAdultsExist.equalsIgnoreCase("Yes")) {
 			System.out.println("All our cruises have food service on board. "
-					+ "\nDo you want to pre-book for dinner buffet meals at 20.99 per day for adults and 4.99 per day for kids?"
+					+ "\nDo you want to pre-book for dinner buffet meals at 20.99 per day for adults and 4.99 per day for kids above 5 years?"
 					+ "\nPlease enter Yes to prebook or enter any other input if you do not want to prebook.");
 
 			String mealSelectionInputByUser = sc.next();
@@ -153,24 +113,9 @@ public class CruiseMain {
 		if (changePersonalInfo.equalsIgnoreCase("Y")) {
 			System.out.println("To change your your personal information, first enter your current password.");
 			String passwordToBeValidated = sc.next();
+			userDetails.isPassWordValidated(passwordToBeValidated);
 
-			for (int i = 0; i < 3; i++) {
-				if (passwordToBeValidated.equals(userDetails.getPassWord())) {
-					System.out.println("Password validated successfully.");
-					break;
-				} else if (i < 2) {
-					System.out.println("Password incorrect. Please try again.Enter your password below.");
-					passwordToBeValidated = sc.next();
-				}
-
-				else {
-					System.out.println(
-							"There are 3 unsuccessful attempts to validate password and hence we can not change any personal details at this time.");
-
-				}
-			}
-
-			if (passwordToBeValidated.equals(userDetails.getPassWord())) {
+			if (true) {
 				String anyOtherChangeNeeded = "";
 				do {
 					System.out.println(
@@ -189,27 +134,12 @@ public class CruiseMain {
 						System.out.println(
 								"Please enter new password. Your new Password must have 8 or more characters and must have one or more of these special characters - !,@,#,$,%,^,& or *.");
 						String newPassword = sc.next();
-						while (newPassword.length() < 8 || !(newPassword.contains("!")) && !(newPassword.contains("@"))
-								&& !(newPassword.contains("#")) && !(newPassword.contains("$"))
-								&& !(newPassword.contains("%")) && !(newPassword.contains("^"))
-								&& !(newPassword.contains("&")) && !(newPassword.contains("*")))
-
-						{
-							System.out.println(
-									"Password not changed. Please create a new password which is 8 or more characters with atleast one special character from !,@,#,$,%,^,& or *.");
-							newPassword = sc.next();
-						}
 
 						userDetails.setPassWord(newPassword);
 						System.out.println("Password changed successfully.");
 					} else if (indexOfInfoToBeChanged == 3) {
 						System.out.println("Please enter new email address.");
 						String newEmailId = sc.next();
-						while (!(newEmailId.contains("@")) || !(newEmailId.contains(".")) || newEmailId.endsWith(".")) {
-							System.out.println("Please enter valid email address.");
-							newEmailId = sc.next();
-						}
-
 						userDetails.setEmailId(newEmailId);
 						System.out.println("Email address changed successfully.");
 					}
@@ -217,11 +147,6 @@ public class CruiseMain {
 					else if (indexOfInfoToBeChanged == 4) {
 						System.out.println("Please enter new phone number.");
 						String newphoneNumber = sc.next();
-						while (newphoneNumber.length() != 10) {
-							System.out.println(
-									"Please enter a valid 10 digit phone number without any spaces in between.");
-							newphoneNumber = sc.next();
-						}
 
 						userDetails.setPhoneNumber(newphoneNumber);
 						System.out.println("Phone number changed successfully.");
@@ -236,9 +161,8 @@ public class CruiseMain {
 					anyOtherChangeNeeded = sc.next();
 				} while (anyOtherChangeNeeded.equalsIgnoreCase("Y"));
 			}
-
-			System.out.println("Thank you for using our service!");
-
 		}
+		System.out.println("Thank you for using our service!");
+
 	}
 }

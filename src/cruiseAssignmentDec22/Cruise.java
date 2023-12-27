@@ -1,8 +1,10 @@
 package cruiseAssignmentDec22;
 
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class Cruise {
+	Scanner sc = new Scanner(System.in);
 
 	String nameOfCruise;
 	int numberOfDays;
@@ -25,7 +27,7 @@ public class Cruise {
 
 	public Cruise() {
 	};// overloading constructor to create reference variable of parent class in main
-	// class for upcasting later
+		// class for upcasting later
 
 	public void displaySelectedCruiseDetails() {
 		System.out.println("The cruise that you have selected is " + nameOfCruise + " which is a " + numberOfDays
@@ -38,8 +40,21 @@ public class Cruise {
 		this.numberOfAdults = numberOfAdultsByUser;
 	}
 
-	public void setNumberOfChildrenAboveFive(int numberOfChildrenAboveFiveByUser) {
-		this.numberOfChildrenAboveFive = numberOfChildrenAboveFiveByUser;
+	public void setNumberOfChildrenAboveFive(int numberOfChildrenByUser) {
+		int noOfChildrenAboveFive = 0;
+		int age;
+		if (numberOfChildrenByUser > 0) {
+			for (int i = 1; i <= numberOfChildrenByUser; i++) {
+				System.out.println("Enter the age of Child " + i);
+				age = sc.nextInt();
+				if (age > 5 && age <= 12) {
+					noOfChildrenAboveFive += 1;
+				}
+
+			}
+
+		}
+		this.numberOfChildrenAboveFive = noOfChildrenAboveFive;
 	}
 
 	public void setMealSelection(String mealSelectionDone) {
