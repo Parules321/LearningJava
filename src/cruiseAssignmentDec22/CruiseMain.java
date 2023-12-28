@@ -8,8 +8,7 @@ public class CruiseMain {
 
 		Scanner sc = new Scanner(System.in);
 
-		Cruise cruise = new Cruise();// creating reference variable of parent class that will be used
-		// for upcasting such as cruise = new ScenicCruise();
+		Cruise cruise = new Cruise();
 
 		UserDetails userDetails = new UserDetails();
 
@@ -28,7 +27,7 @@ public class CruiseMain {
 		String userNameByUser = sc.nextLine();
 		userDetails.setUserName(userNameByUser);
 		System.out.println(
-				"Please create your password now.Password must have 8 or more characters and must have one or more of these special characters - !,@,#,$,%,^,& or *.");
+				"Please create your password now. Password must have 8 or more characters and must have one or more of these special characters - !,@,#,$,%,^,& or *.");
 		String passWordByUser = sc.next();
 
 		userDetails.setPassWord(passWordByUser);
@@ -120,9 +119,9 @@ public class CruiseMain {
 				do {
 					System.out.println(
 							"Please enter 1, 2, 3 or 4 for the information you want to change. \n1 - User Name \n2 - Password \n3 - Email \n4 - Phone Number");
-					int indexOfInfoToBeChanged = sc.nextInt();
+					String infoToBeChanged = sc.next();
 
-					if (indexOfInfoToBeChanged == 1) {
+					if (infoToBeChanged.equals("1")) {
 						System.out.println("Please enter new user name.");
 						sc.nextLine();
 						String newUserName = sc.nextLine();
@@ -130,21 +129,21 @@ public class CruiseMain {
 						System.out.println("User name changed successfully.");
 					}
 
-					else if (indexOfInfoToBeChanged == 2) {
+					else if (infoToBeChanged.equals("2")) {
 						System.out.println(
 								"Please enter new password. Your new Password must have 8 or more characters and must have one or more of these special characters - !,@,#,$,%,^,& or *.");
 						String newPassword = sc.next();
-
 						userDetails.setPassWord(newPassword);
 						System.out.println("Password changed successfully.");
-					} else if (indexOfInfoToBeChanged == 3) {
+
+					} else if (infoToBeChanged.equals("3")) {
 						System.out.println("Please enter new email address.");
 						String newEmailId = sc.next();
 						userDetails.setEmailId(newEmailId);
 						System.out.println("Email address changed successfully.");
 					}
 
-					else if (indexOfInfoToBeChanged == 4) {
+					else if (infoToBeChanged.equals("4")) {
 						System.out.println("Please enter new phone number.");
 						String newphoneNumber = sc.next();
 
@@ -153,7 +152,7 @@ public class CruiseMain {
 					}
 
 					else {
-						System.out.println("Invalid Input. Operation Terminated.");
+						System.out.println("Invalid Input. This operation can not be performed.");
 
 					}
 					System.out.println(
