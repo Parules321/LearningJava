@@ -33,8 +33,8 @@ public class UserDetails {
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		while (phoneNumber.length() != 10) {
-			System.out.println("Please enter a valid 10 digit phone number without any spaces in between.");
+		while (phoneNumber.length() != 10 || !phoneNumber.matches("\\d+")) {
+			System.out.println("Please enter a valid 10 digit phone number without any spaces or any other character.");
 			phoneNumber = sc.next();
 		}
 		this.phoneNumber = phoneNumber;
