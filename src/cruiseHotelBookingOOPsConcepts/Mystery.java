@@ -11,7 +11,7 @@ public class Mystery extends CruiseBooking {
 		super.kidDailyPrice = getKidDailyPrice();
 		super.adultMealPrice = getAdultMealPrice();
 		super.kidMealPrice = getKidMealPrice();
-		
+
 	}
 
 	public String getBooking() {

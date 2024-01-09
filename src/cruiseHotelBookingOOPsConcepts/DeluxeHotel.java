@@ -49,7 +49,6 @@ public class DeluxeHotel extends HotelBooking {
 			System.out.println("Please enter atleast 1 adult to proceed.");
 			noOfAdults = Integer.parseInt(sc.nextLine().trim());
 		}
-
 		return noOfAdults;
 	}
 
@@ -66,16 +65,18 @@ public class DeluxeHotel extends HotelBooking {
 		int roomsNeeded = 0;
 		int capacityCheckAdult = 0;
 		int capacityCheckKid = 0;
+		int numAdults = noOfAdults;
+		int numKids = noOfKids;
 
-		for (int i = 1; i < roomCapacity; i++) {
-			capacityCheckAdult = noOfAdults++;
+		for (int i = 1; i <= roomCapacity; i++) {
+			capacityCheckAdult = numAdults++;
 			if (capacityCheckAdult % roomCapacity == 0) {
 				roomsNeededAdult = capacityCheckAdult / roomCapacity;
 			}
 		}
 
-		for (int i = 1; i < roomCapacity; i++) {
-			capacityCheckKid = noOfKids++;
+		for (int i = 1; i <= roomCapacity; i++) {
+			capacityCheckKid = numKids++;
 			if (capacityCheckKid % roomCapacity == 0) {
 				roomsNeededKid = capacityCheckKid / roomCapacity;
 			}

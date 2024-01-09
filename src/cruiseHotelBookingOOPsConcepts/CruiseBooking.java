@@ -21,7 +21,7 @@ public class CruiseBooking extends MyBookings {
 
 	public boolean setNoOfAdults(Scanner sc, int noOfAdults) {
 		String separateBooking = null;
-		Boolean adultExists = false;
+		boolean isAdult = false;
 		this.noOfAdults = noOfAdults;
 		if (noOfAdults == 0) {
 			System.out.println(
@@ -29,9 +29,9 @@ public class CruiseBooking extends MyBookings {
 			separateBooking = sc.nextLine();
 		}
 		if (noOfAdults != 0 || separateBooking.equalsIgnoreCase("Yes")) {
-			return adultExists = true;
+			return isAdult = true;
 		} else {
-			return adultExists = false;
+			return isAdult = false;
 		}
 	}
 
