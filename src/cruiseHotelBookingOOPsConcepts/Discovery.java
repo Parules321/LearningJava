@@ -3,15 +3,6 @@ package cruiseHotelBookingOOPsConcepts;
 import java.util.Scanner;
 
 public class Discovery extends CruiseBooking {
-	private String booking;
-	private int noOfDays;
-	private double adultDailyPrice;
-	private double kidDailyPrice;
-	private double adultMealPrice;
-	private double kidMealPrice;
-	private int addonCost;
-	private int noOfPersons;
-	private int noOfAddons;
 
 	public Discovery() {
 		super.booking = getBooking();

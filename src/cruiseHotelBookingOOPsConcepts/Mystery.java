@@ -3,15 +3,6 @@ package cruiseHotelBookingOOPsConcepts;
 import java.util.Scanner;
 
 public class Mystery extends CruiseBooking {
-//	private String booking;
-//	private int noOfDays;
-//	private double adultDailyPrice;
-//	private double kidDailyPrice;
-//	private double adultMealPrice;
-//	private double kidMealPrice;
-	// private int addonCost;
-	// private int noOfPersons;
-	// private int noOfAddons;
 
 	public Mystery() {
 		super.booking = getBooking();
@@ -20,7 +11,7 @@ public class Mystery extends CruiseBooking {
 		super.kidDailyPrice = getKidDailyPrice();
 		super.adultMealPrice = getAdultMealPrice();
 		super.kidMealPrice = getKidMealPrice();
-		// super.addOnCost = getAddOnCost();
+		
 	}
 
 	public String getBooking() {

@@ -7,7 +7,7 @@ public class HotelBooking extends MyBookings {
 
 	@Override
 	public void displaySelectedDetails() {
-		System.out.println("Please enter the room you want to select - Deluse Suite or Family Suite"
+		System.out.println("Please enter the room you want to select - Deluxe Suite or Family Suite"
 				+ "\nDeluxe Suite: accommodates 2 adults and 2 children at the rate "
 				+ "of $180/ night\nFamily Suite: accommodates 4 adults and" + " 4 children at $230/ night");
 	}
