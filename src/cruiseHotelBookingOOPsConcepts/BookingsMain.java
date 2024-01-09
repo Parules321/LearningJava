@@ -9,11 +9,11 @@ public class BookingsMain {
 		GuestDetails guest = new GuestDetails();
 		MyBookings booking = null;
 		boolean isExtraBooking = true;
-		MyBookings[] bookings = new MyBookings[5];
+		MyBookings[] bookings = new MyBookings[6];
 		int n = 0;
 		System.out.println("Welcome, Guest! Please sign up to book a service.");
 		guest.registerUser(sc);
-		while (isExtraBooking) {
+		while (isExtraBooking && n < 6) {
 			boolean isService = false;
 			while (!(isService)) {
 				System.out.println("Which is the service you want to book - please enter either Hotel or Cruise.");
@@ -73,6 +73,11 @@ public class BookingsMain {
 			} else {
 				n += 1;
 			}
+		}
+
+		if (n == 6) {
+			System.out.println("Our system shows you've already completed 6 separate bookings in this session."
+					+ "\nIf you need to make another booking,  please start a separate session.\n");
 		}
 		System.out.println("\nThank you for booking with us. Here is a list of your recent bookings-\n");
 		try {
