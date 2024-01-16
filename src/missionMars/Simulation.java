@@ -8,12 +8,10 @@ import java.util.Scanner;
 import collections.Student;
 
 public class Simulation {
-	ArrayList<Item> items = new ArrayList<>();
-	Rocket rocket1 = new R1();
-	Rocket rocket2 = new R2();
-	// int totalCargo;
+	long totalRocketCost;
 
 	public ArrayList<Item> loadItems() {
+		ArrayList<Item> items = new ArrayList<>();
 		Scanner sc = null;
 		File file = new File("C:\\JavaPractice\\ItemsToCarry.txt");
 		try {
@@ -32,70 +30,60 @@ public class Simulation {
 		return items;
 	}
 
-	public ArrayList<ArrayList<Item>> loadU1(ArrayList<Item> items) {
-		ArrayList<ArrayList<Item>> r1s = new ArrayList<>();
-		int i = 0; // index counter i
+	public ArrayList<Rocket> loadU1(ArrayList<Item> items) {
+		ArrayList<Rocket> rockets = new ArrayList<>();
+		Rocket rocket = new R1();
+		rockets.add(rocket);
 		for (Item item : items) {
-			rocket1.carry(item);
-			r1s.add(i, items);
-			// Not able to do this. Not understanding the proper way to add few elements
-			// from object arraylist as one element to other array list.
-			if (!rocket1.canCarry(item)) {
-				i += 1;
-			}
-			;
-		}
-
-		return r1s;
-	}
-
-	public ArrayList<ArrayList<Item>> loadU2(ArrayList<Item> items) {
-		ArrayList<ArrayList<Item>> r2s = new ArrayList<>();
-		int i = 0; // index counter i
-		for (Item item : items) {
-			rocket2.carry(item);
-			r2s.add(i, items);
-			// Not able to do this. Not understanding the proper way to add few elements
-			// from object arraylist as one element to other array list.
-			if (!rocket2.canCarry(item)) {
-				i += 1;
-			}
-			;
-		}
-
-		return r2s;
-	}
-
-	public void runSimulation(ArrayList<ArrayList<Item>> listOfRockets) {
-		double costOfAllRockets;
-		for (ArrayList<Item> rocket : listOfRockets) {
-			if (listOfRockets == loadU1(loadItems())) {
-				while (!rocket1.launchRocket() || !rocket1.landRocket()) {
-					System.out.println("Sending " + rocket1.rocketName + " again.");
-					rocket1.rocketCost += rocket1.rocketCost;
-					if (rocket1.launchRocket() && rocket1.landRocket()) {
-						System.out.println("Rocket Launch and Land Successful!");
-					}
-				}
-			}
-
-			else if (listOfRockets == loadU2(loadItems())) {
-				while (!rocket2.launchRocket() || !rocket2.landRocket()) {
-					System.out.println("Sending " + rocket2.rocketName + " again.");
-					rocket2.rocketCost += rocket2.rocketCost;
-					if (rocket2.launchRocket() && rocket2.landRocket()) {
-						System.out.println("Rocket Launch and Land Successful!");
-					}
+			if (rocket.canCarry(rocket.getCargoCarried(item))) {
+				rocket.carry(rocket.getWeightWithCargo());
+			} else {
+				rocket = new R1();
+				rockets.add(rocket);
+				if (rocket.canCarry(rocket.getCargoCarried(item))) {
+					rocket.carry(rocket.getWeightWithCargo());
 				}
 			}
 		}
+		return rockets;
+	}
 
-		if (listOfRockets == loadU1(loadItems())) {
-			costOfAllRockets = rocket1.rocketCost;
-			System.out.println("Total cost for " + rocket1.rocketName + " fleet: ${" + costOfAllRockets + "}");
-		} else {
-			costOfAllRockets = rocket1.rocketCost;
-			System.out.println("Total cost for " + rocket2.rocketName + " fleet: ${" + costOfAllRockets + "}");
+	public ArrayList<Rocket> loadU2(ArrayList<Item> items) {
+		ArrayList<Rocket> rockets = new ArrayList<>();
+		Rocket rocket = new R2();
+		rockets.add(rocket);
+		for (Item item : items) {
+			if (rocket.canCarry(rocket.getCargoCarried(item))) {
+				rocket.carry(rocket.getWeightWithCargo());
+			} else {
+				rocket = new R2();
+				rockets.add(rocket);
+				if (rocket.canCarry(rocket.getCargoCarried(item))) {
+					rocket.carry(rocket.getWeightWithCargo());
+				}
+			}
+		}
+		return rockets;
+	}
+
+	public void runSimulation(ArrayList<Rocket> rockets) {
+
+		for (Rocket rocket : rockets) {
+			if (rocket.launchRocket(rocket.getExplosionChance()) && rocket.landRocket(rocket.getCrashChance())) {
+				System.out
+						.println("Congratulations! Rocket" + rocket.rocketName + " launched and landed successfully!");
+				totalRocketCost += rocket.rocketCostInMillion;
+			}
+			while (!rocket.launchRocket(rocket.getExplosionChance()) || !rocket.landRocket(rocket.getCrashChance())) {
+				if (!rocket.launchRocket(rocket.getExplosionChance())) {
+					System.out.println("Sending " + rocket.rocketName + " again as launch unsuccessful.");
+					totalRocketCost += rocket.rocketCostInMillion;
+				} else {
+					System.out.println("Sending " + rocket.rocketName + " again as landing unsuccessful.");
+					totalRocketCost += rocket.rocketCostInMillion;
+				}
+
+			}
 		}
 
 	}

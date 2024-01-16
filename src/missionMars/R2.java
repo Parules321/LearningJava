@@ -4,41 +4,42 @@ public class R2 extends Rocket {
 
 	public R2() {
 		rocketName = "R2";
-		rocketCost = 120000000;
+		rocketCostInMillion = 120;
 		rocketWeight = 18000;
-		initialRocketWeight = 18000;
 		maxWeightWithCargo = 29000;
-		explosionChance = 0.04 * (cargoCarried / cargoLimit);
-		crashChance = 0.08 * (cargoCarried / cargoLimit);
+		cargoLimit = getCargoLimit();
 	}
 
 	@Override
-	public boolean launchRocket() {
+	public double getExplosionChance() {
+		launchExplosionChance = 0.04 * (cargoCarried / cargoLimit);
+		return launchExplosionChance;
+	}
+
+	@Override
+	public double getCrashChance() {
+		landingCrashChance = 0.08 * (cargoCarried / cargoLimit);
+		return landingCrashChance;
+	}
+
+	@Override
+	public boolean launchRocket(double explosionChance) {
+		double randomValue = Math.random();
+		if (randomValue > launchExplosionChance) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean landRocket(double crashChance) {
 		double randomValue = Math.random();
 		if (randomValue > crashChance) {
-			System.out.println("Rocket R2 launch successful!");
 			return true;
-		}
-
-		else {
-			System.out.println("Rocket R2 launch failed!");
+		} else {
 			return false;
 		}
-	}
-
-	@Override
-	public boolean landRocket() {
-		double randomValue = Math.random();
-		if (randomValue > explosionChance) {
-			System.out.println("Rocket R2 landing successful!");
-			return true;
-		}
-
-		else {
-			System.out.println("Rocket R2 landing fail!");
-			return false;
-		}
-
 	}
 
 }
